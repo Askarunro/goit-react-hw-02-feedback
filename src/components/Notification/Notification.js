@@ -1,8 +1,8 @@
 
-const a = ({message})=>{
+const notification = ({message})=>{
     return(
-        <h2>{message}</h2>
+        <h3>{message}</h3>
     )
 }
 
-export default a
+export default notification
