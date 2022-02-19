@@ -11,39 +11,52 @@ class Statistics extends Component {
     positive: 0,
   };
 
+
+  countTotalFeedback=()=>{
+    this.setState((countTotal) => {
+        return {
+            total: countTotal.total + 1,
+        };
+      });
+  };
+
+  countPositiveFeedbackPercentage=()=>{
+    this.setState((countPositive) => {
+        return {
+            positive: Math.floor((countPositive.good / countPositive.total )*100)
+        };
+      });
+  }
+
   clickBtnGood = () => {
     this.setState((btnGoodState) => {
       return {
         good: btnGoodState.good + 1,
-        total: btnGoodState.total + 1,
       };
     });
+    this.countTotalFeedback();
+    this.countPositiveFeedbackPercentage();
   };
 
   clickBtnNeutral = () => {
     this.setState((btnGoodNeutral) => {
       return {
         neutral: btnGoodNeutral.neutral + 1,
-        total: btnGoodNeutral.total + 1,
       };
     });
+    this.countTotalFeedback();
+    this.countPositiveFeedbackPercentage();
+
   };
 
   clickBtnBad = () => {
     this.setState((btnGoodBad) => {
       return {
         bad: btnGoodBad.bad + 1,
-        total: btnGoodBad.total + 1,
       };
     });
-  };
-
-  positiveFeedback = () => {
-        this.setState((positiveFeedback)=>{
-            return{
-                positive: positiveFeedback.total / positiveFeedback.good
-            }
-        })
+    this.countTotalFeedback();
+    this.countPositiveFeedbackPercentage();
   };
 
   render() {
