@@ -1,19 +1,30 @@
 // import React, {Component} from 'react';
-import React from "react";
+// import React from "react";
+import React,  {Component} from "react";
 
-const feedbackOptions = ({ onClickGood, onClickNeutral, onClickBad }) => {
+class FeedbackOptions extends Component {
+
+
+  handleBtnClick =(e) =>{
+    const name = e.currentTarget.getAttribute('data-name')
+    this.props.ClickBtn(name)
+  }
+
+ render(){
   return (
     <>
-      <button type="button" onClick={onClickGood} data="good">
+      <button type="button" onClick={this.handleBtnClick} data-name="good">
         Good
       </button>
-      <button type="button" onClick={onClickNeutral} data="neutral">
+      <button type="button" onClick={this.handleBtnClick} data-name="neutral">
         Neutral
       </button>
-      <button type="button" onClick={onClickBad} data="bad">
+      <button type="button" onClick={this.handleBtnClick} data-name="bad">
         Bad
       </button>
     </>
   );
+ }
 };
-export default feedbackOptions;
+
+export default FeedbackOptions;
