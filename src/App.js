@@ -16,24 +16,17 @@ class App extends Component {
   };
 
   countTotalFeedback = () => {
-    total += 1;
+    return (total += 1);
   };
 
-  countPositiveFeedbackPercentage = () => {
-    return (positive = Math.floor((this.state.good / total) * 100));
+  test = () => {
+    positive = Math.floor(100 / total);
   };
-
-  test=()=>{
-    this.countPositiveFeedbackPercentage()
-  }
 
   onClickBtn = (data) => {
-    
-    this.setState((prevState) => {
-      this.test();
-      return { [data]: prevState[data] + 1 };
-    });
-    this.countTotalFeedback();
+    total += 1;
+    this.setState((prevState) => ({ [data]: prevState[data] + 1 }));
+    this.setState(() => this.test());
   };
 
   render() {
@@ -49,7 +42,7 @@ class App extends Component {
               neutral={this.state.neutral}
               bad={this.state.bad}
               total={total}
-              positivePercentage={positive}
+              positivePercentage={positive * this.state.good}
             />
           ) : (
             <Notification message="There is no feedback" />
